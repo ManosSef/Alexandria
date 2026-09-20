@@ -1,0 +1,5 @@
+main: me.manossef.alexandria.Alexandria
+name: Alexandria
+version: ${plugin.version}
+author: ManosSef
+api-version: 1.13
