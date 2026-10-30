@@ -6,7 +6,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class SpigotMCUpdateChecker extends SimpleUpdateChecker {
-
     /**
      * Constructs a new update checker for a resource.
      *
@@ -15,10 +14,7 @@ public class SpigotMCUpdateChecker extends SimpleUpdateChecker {
      * @param resourceWebName The URL name of the resource on SpigotMC.
      */
     public SpigotMCUpdateChecker(Plugin plugin, int resourceId, String resourceWebName) throws MalformedURLException {
-
         super(plugin, new URL("https://api.spigotmc.org/legacy/update.php?resource=" + resourceId),
             new URL("https://www.spigotmc.org/resources/" + resourceWebName + "." + resourceId + "/"));
-
     }
-
 }

@@ -14,7 +14,6 @@ import java.util.logging.Level;
  * Holds the information for a single YML file stored in a plugin's folder.
  */
 public class YamlFile {
-
     private final JavaPlugin plugin;
     private FileConfiguration dataConfig = null;
     private File configFile = null;
@@ -27,28 +26,22 @@ public class YamlFile {
      * @param filename The filename. This should end in <code>.yml</code>.
      */
     public YamlFile(JavaPlugin plugin, String filename) {
-
         this.plugin = plugin;
         this.filename = filename;
-
     }
 
     /**
      * Reloads the configuration from the YML file.
      */
     public void reloadConfig() {
-
         if(this.configFile == null)
             this.configFile = new File(this.plugin.getDataFolder(), filename);
         this.dataConfig = YamlConfiguration.loadConfiguration(this.configFile);
         InputStream defaultStream = this.plugin.getResource(filename);
         if(defaultStream != null) {
-
             YamlConfiguration defaultConfig = YamlConfiguration.loadConfiguration(new InputStreamReader(defaultStream));
             this.dataConfig.setDefaults(defaultConfig);
-
         }
-
     }
 
     /**
@@ -57,30 +50,22 @@ public class YamlFile {
      * @return The file configuration.
      */
     public FileConfiguration getConfig() {
-
         if(this.dataConfig == null)
             this.reloadConfig();
         return this.dataConfig;
-
     }
 
     /**
      * Saves the configuration to the YML file.
      */
     public void saveConfig() {
-
         if(this.dataConfig == null || this.configFile == null)
             return;
         try {
-
             this.getConfig().save(this.configFile);
-
         } catch(IOException e) {
-
             plugin.getLogger().log(Level.SEVERE, "Could not save config to " + this.configFile, e);
-
         }
-
     }
 
     /**
@@ -89,13 +74,10 @@ public class YamlFile {
      * will not overwrite its data.
      */
     public void saveDefaultConfig() {
-
         if(this.configFile == null)
             this.configFile = new File(this.plugin.getDataFolder(), filename);
         if(!this.configFile.exists())
             if(this.plugin.getResource(filename) != null)
                 this.plugin.saveResource(filename, false);
-
     }
-
 }

@@ -8,7 +8,6 @@ import org.bukkit.plugin.Plugin;
 import java.util.List;
 
 public final class OptionValidations {
-
     private OptionValidations() {
     }
 
@@ -29,16 +28,12 @@ public final class OptionValidations {
     }
 
     private static boolean checkRequired0(String path, Plugin plugin, FileConfiguration config, boolean disablePlugin) {
-
         Object value = config.get(path);
         if(value == null) {
-
             Util.logSevere("Found that \"" + path + "\" has not been set to a value.", plugin, disablePlugin);
             return false;
-
         }
         return true;
-
     }
 
     public static boolean checkBooleanOption(String path, Plugin plugin) {
@@ -58,17 +53,13 @@ public final class OptionValidations {
     }
 
     private static boolean checkBooleanOption0(String path, Plugin plugin, FileConfiguration config, boolean disablePlugin) {
-
         Object value = config.get(path);
         if(value != null)
             if(!TypeChecks.isBoolean(value.toString())) {
-
                 Util.logSevere("Found that \"" + path + "\" has been set to a value that is not true or false.", plugin, disablePlugin);
                 return false;
-
             }
         return true;
-
     }
 
     public static boolean checkDebugOption(String path, Plugin plugin) {
@@ -136,34 +127,24 @@ public final class OptionValidations {
     }
 
     private static boolean checkIntOption0(String path, int min, int max, Plugin plugin, FileConfiguration config, boolean disablePlugin) {
-
         if(min > max) throw new IllegalArgumentException("The minimum value cannot be greater than the maximum value");
         Object value = config.get(path);
         if(value != null) {
-
             if(!TypeChecks.isInt(value.toString())) {
-
                 Util.logSevere("Found that \"" + path + "\" has been set to a value that is not an integer.", plugin, disablePlugin);
                 return false;
-
             }
             int intValue = config.getInt(path);
             if(intValue < min) {
-
                 Util.logSevere("Found that \"" + path + "\" has been set to a value that is less than " + min + ".", plugin, disablePlugin);
                 return false;
-
             }
             if(intValue > max) {
-
                 Util.logSevere("Found that \"" + path + "\" has been set to a value that is greater than " + max + ".", plugin, disablePlugin);
                 return false;
-
             }
-
         }
         return true;
-
     }
 
     public static boolean checkMinMaxIntOption(String path, Plugin plugin) {
@@ -215,32 +196,24 @@ public final class OptionValidations {
     }
 
     private static boolean checkMinMaxIntOption0(String path, int min, int max, Plugin plugin, FileConfiguration config, boolean disablePlugin) {
-
         if(!checkIntOption0(path + ".min", min, max, plugin, config, disablePlugin)) return false;
         if(!checkIntOption0(path + ".max", min, max, plugin, config, disablePlugin)) return false;
         Object minValue = config.get(path + ".min");
         Object maxValue = config.get(path + ".max");
         if(minValue == null && maxValue == null) return true;
         if(minValue == null) {
-
             Util.logSevere("Found that \"" + path + "\" has a maximum value but not a minimum value.", plugin, disablePlugin);
             return false;
-
         }
         if(maxValue == null) {
-
             Util.logSevere("Found that \"" + path + "\" has a minimum value but not a maximum value.", plugin, disablePlugin);
             return false;
-
         }
         if(config.getInt(path + ".min") > config.getInt(path + ".max")) {
-
             Util.logSevere("Found that the minimum value of \"" + path + "\" is greater than its maximum value.", plugin, disablePlugin);
             return false;
-
         }
         return true;
-
     }
 
     public static boolean checkDoubleOption(String path, Plugin plugin) {
@@ -292,34 +265,24 @@ public final class OptionValidations {
     }
 
     private static boolean checkDoubleOption0(String path, double min, double max, Plugin plugin, FileConfiguration config, boolean disablePlugin) {
-
         if(min > max) throw new IllegalArgumentException("The minimum value cannot be greater than the maximum value");
         Object value = config.get(path);
         if(value != null) {
-
             if(!TypeChecks.isDouble(value.toString())) {
-
                 Util.logSevere("Found that \"" + path + "\" has been set to a value that is not a number.", plugin, disablePlugin);
                 return false;
-
             }
             double doubleValue = config.getDouble(path);
             if(doubleValue < min) {
-
                 Util.logSevere("Found that \"" + path + "\" has been set to a value that is less than " + min + ".", plugin, disablePlugin);
                 return false;
-
             }
             if(doubleValue > max) {
-
                 Util.logSevere("Found that \"" + path + "\" has been set to a value that is greater than " + max + ".", plugin, disablePlugin);
                 return false;
-
             }
-
         }
         return true;
-
     }
 
     public static boolean checkMinMaxDoubleOption(String path, Plugin plugin) {
@@ -371,32 +334,24 @@ public final class OptionValidations {
     }
 
     private static boolean checkMinMaxDoubleOption0(String path, double min, double max, Plugin plugin, FileConfiguration config, boolean disablePlugin) {
-
         if(!checkDoubleOption0(path + ".min", min, max, plugin, config, disablePlugin)) return false;
         if(!checkDoubleOption0(path + ".max", min, max, plugin, config, disablePlugin)) return false;
         Object minValue = config.get(path + ".min");
         Object maxValue = config.get(path + ".max");
         if(minValue == null && maxValue == null) return true;
         if(minValue == null) {
-
             Util.logSevere("Found that \"" + path + "\" has a maximum value but not a minimum value.", plugin, disablePlugin);
             return false;
-
         }
         if(maxValue == null) {
-
             Util.logSevere("Found that \"" + path + "\" has a minimum value but not a maximum value.", plugin, disablePlugin);
             return false;
-
         }
         if(config.getDouble(path + ".min") > config.getDouble(path + ".max")) {
-
             Util.logSevere("Found that the minimum value of \"" + path + "\" is greater than its maximum value.", plugin, disablePlugin);
             return false;
-
         }
         return true;
-
     }
 
     public static boolean checkStringOption(String path, Plugin plugin) {
@@ -416,17 +371,13 @@ public final class OptionValidations {
     }
 
     private static boolean checkStringOption0(String path, Plugin plugin, FileConfiguration config, boolean disablePlugin) {
-
         Object value = config.get(path);
         if(value != null)
             if(!(value instanceof String)) {
-
                 Util.logSevere("Found that \"" + path + "\" has been set to a value that is not a string.", plugin, disablePlugin);
                 return false;
-
             }
         return true;
-
     }
 
     public static <T extends Enum<T>> boolean checkEnumOption(String path, Class<T> clazz, Plugin plugin) {
@@ -446,17 +397,13 @@ public final class OptionValidations {
     }
 
     private static <T extends Enum<T>> boolean checkEnumOption0(String path, Class<T> clazz, Plugin plugin, FileConfiguration config, boolean disablePlugin) {
-
         Object value = config.get(path);
         if(value != null)
             if(!TypeChecks.isEnum(value.toString(), clazz)) {
-
                 Util.logSevere("Found that \"" + path + "\" has been set to a value that is not an instance of " + clazz.getName() + ".", plugin, disablePlugin);
                 return false;
-
             }
         return true;
-
     }
 
     public static boolean checkListOption(String path, Plugin plugin) {
@@ -476,17 +423,13 @@ public final class OptionValidations {
     }
 
     private static boolean checkListOption0(String path, Plugin plugin, FileConfiguration config, boolean disablePlugin) {
-
         Object value = config.get(path);
         if(value != null)
             if(!(value instanceof List<?>)) {
-
                 Util.logSevere("Found that \"" + path + "\" has been set to a value that is not a list.", plugin, disablePlugin);
                 return false;
-
             }
         return true;
-
     }
 
     public static boolean checkBooleanList(String path, Plugin plugin) {
@@ -506,22 +449,16 @@ public final class OptionValidations {
     }
 
     private static boolean checkBooleanList0(String path, Plugin plugin, FileConfiguration config, boolean disablePlugin) {
-
         if(!checkListOption0(path, plugin, config, disablePlugin)) return false;
         List<?> list = config.getList(path);
         if(list != null)
             for(Object value : list) {
-
                 if(!TypeChecks.isBoolean(value.toString())) {
-
                     Util.logSevere("Found that \"" + path + "\" contains a value that is not true or false.", plugin, disablePlugin);
                     return false;
-
                 }
-
             }
         return true;
-
     }
 
     public static boolean checkIntList(String path, Plugin plugin) {
@@ -573,36 +510,26 @@ public final class OptionValidations {
     }
 
     private static boolean checkIntList0(String path, int min, int max, Plugin plugin, FileConfiguration config, boolean disablePlugin) {
-
         if(min > max) throw new IllegalArgumentException("The minimum value cannot be greater than the maximum value");
         if(!checkListOption0(path, plugin, config, disablePlugin)) return false;
         List<?> list = config.getList(path);
         if(list != null)
             for(Object value : list) {
-
                 if(!TypeChecks.isInt(value.toString())) {
-
                     Util.logSevere("Found that \"" + path + "\" contains a value that is not an integer.", plugin, disablePlugin);
                     return false;
-
                 }
                 int intValue = Integer.parseInt(value.toString());
                 if(intValue < min) {
-
                     Util.logSevere("Found that \"" + path + "\" contains a value that is less than " + min + ".", plugin, disablePlugin);
                     return false;
-
                 }
                 if(intValue > max) {
-
                     Util.logSevere("Found that \"" + path + "\" contains a value that is greater than " + max + ".", plugin, disablePlugin);
                     return false;
-
                 }
-
             }
         return true;
-
     }
 
     public static boolean checkDoubleList(String path, Plugin plugin) {
@@ -654,36 +581,26 @@ public final class OptionValidations {
     }
 
     private static boolean checkDoubleList0(String path, double min, double max, Plugin plugin, FileConfiguration config, boolean disablePlugin) {
-
         if(min > max) throw new IllegalArgumentException("The minimum value cannot be greater than the maximum value");
         if(!checkListOption0(path, plugin, config, disablePlugin)) return false;
         List<?> list = config.getList(path);
         if(list != null)
             for(Object value : list) {
-
                 if(!TypeChecks.isDouble(value.toString())) {
-
                     Util.logSevere("Found that \"" + path + "\" contains a value that is not a number.", plugin, disablePlugin);
                     return false;
-
                 }
                 double doubleValue = Double.parseDouble(value.toString());
                 if(doubleValue < min) {
-
                     Util.logSevere("Found that \"" + path + "\" contains a value that is less than " + min + ".", plugin, disablePlugin);
                     return false;
-
                 }
                 if(doubleValue > max) {
-
                     Util.logSevere("Found that \"" + path + "\" contains a value that is greater than " + max + ".", plugin, disablePlugin);
                     return false;
-
                 }
-
             }
         return true;
-
     }
 
     public static boolean checkStringList(String path, Plugin plugin) {
@@ -703,22 +620,16 @@ public final class OptionValidations {
     }
 
     private static boolean checkStringList0(String path, Plugin plugin, FileConfiguration config, boolean disablePlugin) {
-
         if(!checkListOption0(path, plugin, config, disablePlugin)) return false;
         List<?> list = config.getList(path);
         if(list != null)
             for(Object value : list) {
-
                 if(!(value instanceof String)) {
-
                     Util.logSevere("Found that \"" + path + "\" contains a value that is not a string.", plugin, disablePlugin);
                     return false;
-
                 }
-
             }
         return true;
-
     }
 
     public static <T extends Enum<T>> boolean checkEnumList(String path, Class<T> clazz, Plugin plugin) {
@@ -738,22 +649,15 @@ public final class OptionValidations {
     }
 
     private static <T extends Enum<T>> boolean checkEnumList0(String path, Class<T> clazz, Plugin plugin, FileConfiguration config, boolean disablePlugin) {
-
         if(!checkListOption0(path, plugin, config, disablePlugin)) return false;
         List<?> list = config.getList(path);
         if(list != null)
             for(Object value : list) {
-
                 if(!TypeChecks.isEnum(value.toString(), clazz)) {
-
                     Util.logSevere("Found that \"" + path + "\" has been set to a value that is not an instance of " + clazz.getName() + ".", plugin, disablePlugin);
                     return false;
-
                 }
-
             }
         return true;
-
     }
-
 }
