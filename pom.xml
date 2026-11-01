@@ -14,8 +14,8 @@
     <properties>
         <java.version>11</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <plugin.version>1.0.0-build.${plugin.build}</plugin.version>
-        <plugin.build>15</plugin.build>
+        <plugin.version>1.0.0</plugin.version>
+        <plugin.build>16</plugin.build>
     </properties>
 
     <build>

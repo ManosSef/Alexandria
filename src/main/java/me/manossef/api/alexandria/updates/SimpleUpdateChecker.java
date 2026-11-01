@@ -1,6 +1,5 @@
 package me.manossef.api.alexandria.updates;
 
-import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 
 import java.io.IOException;
