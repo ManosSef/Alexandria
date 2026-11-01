@@ -9,6 +9,10 @@ import java.net.URL;
 import java.util.Scanner;
 import java.util.logging.Level;
 
+/**
+ * A simple update checker for a resource, with a URL to check for updates and another for pointing server owners to
+ * where they can download a newer version of the resource.
+ */
 public class SimpleUpdateChecker implements UpdateChecker {
     private final Plugin plugin;
     private final URL updateCheckUrl;
@@ -16,10 +20,9 @@ public class SimpleUpdateChecker implements UpdateChecker {
 
     /**
      * Constructs a new update checker for a resource.
-     *
-     * @param plugin         The resource in its current version.
+     * @param plugin The resource in its current version.
      * @param updateCheckUrl The URL to visit to check for updates.
-     * @param downloadUrl    The URL to point server owners to so they can download a newer version of the resource.
+     * @param downloadUrl The URL to point server owners to so they can download a newer version of the resource.
      */
     public SimpleUpdateChecker(Plugin plugin, URL updateCheckUrl, URL downloadUrl) {
         this.plugin = plugin;
@@ -68,7 +71,6 @@ public class SimpleUpdateChecker implements UpdateChecker {
 
     /**
      * Returns the resource's name.
-     *
      * @return The resource's name.
      */
     public String getPluginName() {

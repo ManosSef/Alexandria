@@ -2,7 +2,13 @@ package me.manossef.api.alexandria.updates;
 
 import me.manossef.api.alexandria.TypeChecks;
 
+/**
+ * A blueprint for a class that checks a resource for updates.
+ */
 public interface UpdateChecker {
+    /**
+     * Checks the resource for updates.
+     */
     void checkForUpdates();
 
     static boolean isStable(String version) {

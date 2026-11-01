@@ -21,8 +21,7 @@ public class YamlFile {
 
     /**
      * Constructs a new holder for a YML file.
-     *
-     * @param plugin   The plugin to give the YML file to.
+     * @param plugin The plugin to give the YML file to.
      * @param filename The filename. This should end in <code>.yml</code>.
      */
     public YamlFile(JavaPlugin plugin, String filename) {
@@ -46,7 +45,6 @@ public class YamlFile {
 
     /**
      * Returns the YML configuration of the file.
-     *
      * @return The file configuration.
      */
     public FileConfiguration getConfig() {

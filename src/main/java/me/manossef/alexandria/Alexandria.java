@@ -4,6 +4,9 @@ import me.manossef.api.alexandria.updates.UpdateChecker;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
+/**
+ * The main plugin class of Alexandria.
+ */
 public final class Alexandria extends JavaPlugin {
     @Override
     public void onEnable() {
@@ -13,6 +16,12 @@ public final class Alexandria extends JavaPlugin {
     public void onDisable() {
     }
 
+    /**
+     * Checks an Alexandria version string against the current version. If the specified version is not considered
+     * fully compatible with the current version, an appropriate warning will be logged.
+     * @param version The version string.
+     * @param plugin The plugin this method is being called from.
+     */
     public void checkVersion(String version, Plugin plugin) {
         String currentVersion = this.getDescription().getVersion();
         if(version.equals(currentVersion)) return;
