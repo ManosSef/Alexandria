@@ -41,32 +41,30 @@ public class SimpleUpdateChecker implements UpdateChecker {
             plugin.getLogger().log(Level.WARNING, "Issues may arise; you have been warned.");
             return;
         }
-        Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {
-            try {
-                InputStream stream = updateCheckUrl.openStream();
-                Scanner scan = new Scanner(stream);
-                if(scan.hasNext()) {
-                    String newVersion = scan.next();
-                    scan.close();
-                    int comparison = UpdateChecker.compareVersions(currentVersion, newVersion);
-                    if(comparison < 0) {
-                        plugin.getLogger().log(Level.WARNING, "This server is running an older version of "
-                            + plugin.getName() + ", " + currentVersion + ".");
-                        plugin.getLogger().log(Level.WARNING, "There is a new version available: " + newVersion + ".");
-                        plugin.getLogger().log(Level.WARNING,
-                            "You can download it here: " + downloadUrl);
-                    } else if(comparison > 0) {
-                        plugin.getLogger().log(Level.INFO, "This server is running a soon to be released version of "
-                            + plugin.getName() + ", " + currentVersion + ".");
-                        plugin.getLogger().log(Level.INFO, "Last version I knew of was " + newVersion + ".");
-                        plugin.getLogger().log(Level.INFO,
-                            "Thank you developer, for enlightening me on your short term plans.");
-                    }
+        try {
+            InputStream stream = updateCheckUrl.openStream();
+            Scanner scan = new Scanner(stream);
+            if(scan.hasNext()) {
+                String newVersion = scan.next();
+                scan.close();
+                int comparison = UpdateChecker.compareVersions(currentVersion, newVersion);
+                if(comparison < 0) {
+                    plugin.getLogger().log(Level.WARNING, "This server is running an older version of "
+                        + plugin.getName() + ", " + currentVersion + ".");
+                    plugin.getLogger().log(Level.WARNING, "There is a new version available: " + newVersion + ".");
+                    plugin.getLogger().log(Level.WARNING,
+                        "You can download it here: " + downloadUrl);
+                } else if(comparison > 0) {
+                    plugin.getLogger().log(Level.INFO, "This server is running a soon to be released version of "
+                        + plugin.getName() + ", " + currentVersion + ".");
+                    plugin.getLogger().log(Level.INFO, "Last version I knew of was " + newVersion + ".");
+                    plugin.getLogger().log(Level.INFO,
+                        "Thank you developer, for enlightening me on your short term plans.");
                 }
-            } catch(IOException e) {
-                plugin.getLogger().log(Level.WARNING, "Failed to check for updates for " + plugin.getName() + "!");
             }
-        });
+        } catch(IOException e) {
+            plugin.getLogger().log(Level.WARNING, "Failed to check for updates for " + plugin.getName() + "!");
+        }
     }
 
     /**
