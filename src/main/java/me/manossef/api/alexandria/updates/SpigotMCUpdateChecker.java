@@ -14,6 +14,7 @@ public class SpigotMCUpdateChecker extends SimpleUpdateChecker {
      * @param plugin The resource in its current version.
      * @param resourceId The numeric ID of the resource on SpigotMC.
      * @param resourceWebName The URL name of the resource on SpigotMC.
+     * @throws MalformedURLException If <code>resourceWebName</code> is a string that invalidates the URL.
      */
     public SpigotMCUpdateChecker(Plugin plugin, int resourceId, String resourceWebName) throws MalformedURLException {
         super(plugin, new URL("https://api.spigotmc.org/legacy/update.php?resource=" + resourceId),

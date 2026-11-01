@@ -9,10 +9,9 @@ import java.util.logging.Logger;
  */
 public interface ConfigurationRecord {
     /**
-     * Logs the values of all options handled by this record to the provided logger.
+     * Logs the values of all options handled by this record to the provided logger. This method is primarily meant to
+     * be called when the plugin starts up, to inform the server owner of the values of a plugin's options.
      * @param logger The logger to log the options to.
-     * @implNote This method is primarily meant to be called when the plugin starts up, to inform the server owner of
-     * the values of a plugin's options.
      */
     void logOptions(Logger logger);
 
